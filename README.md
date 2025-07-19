@@ -1,62 +1,58 @@
 # 🛍️ Online Ürün Yorumlarından Duygu Sınıflandırması
 
-Bu proje, Türkçe e-ticaret yorumlarını kullanarak **duygu analizi** (sentiment analysis) gerçekleştirmeyi amaçlar. Kullanıcı yorumları makine öğrenmesi modelleriyle işlenir ve **olumlu** veya **olumsuz** olarak sınıflandırılır.
+Bu proje, Türkçe e-ticaret yorumlarını kullanarak **duygu analizi (sentiment analysis)** gerçekleştirmeyi amaçlar. Kullanıcı yorumları makine öğrenmesi modelleriyle analiz edilerek **olumlu** veya **olumsuz** olarak sınıflandırılır.
 
-> 💡 Geliştirme, görselleştirme ve açıklanabilirlik odaklıdır. Gradio tabanlı kullanıcı dostu bir arayüz ile tamamlandı.
+> 💡 Proje; geliştirme, görselleştirme ve açıklanabilirlik odaklıdır. Gradio tabanlı kullanıcı dostu bir arayüz ile tamamlanmıştır.
 
 ---
 
 ## 📁 Proje Klasör Yapısı
-
-📦 e-ticaret-duygu-analizi
-├── eticaret-urun-yorumlari.xlsx # Veri seti
-├── kod dosyası.ipynb # Tüm kodları içeren Jupyter Notebook
-├── README.md # Proje açıklama dosyası
-├── model_karsilastirma.png # Model karşılaştırma görseli
-├── etkili_kelimeler.png # Tahmine etki eden kelimeler grafiği
-├── output (1).png # ROC eğrisi görseli
-├── Online Ürün Yorumlarından ...pptx # Sunum dosyası
-├── .gradio/ # Gradio ile oluşturulan içerikler
-└── gradio_arayuz.py # Gradio arayüz betiği (opsiyonel)
-
-yaml
-Kopyala
-Düzenle
+e-ticaret-duygu-analizi/
+│
+├── eticaret-urun-yorumlari.xlsx     # Veri seti
+├── kod_dosyasi.ipynb                # Tüm kodları içeren Jupyter Notebook
+├── README.md                        # Proje açıklama dosyası
+├── model_karsilastirma.png         # Model karşılaştırma görseli
+├── etkili_kelimeler.png            # Tahmine etki eden kelimeler grafiği
+├── output (1).png                  # ROC eğrisi görseli
+├── Online Ürün Yorumlarından ….pptx  # PowerPoint sunumu
+├── .gradio/                         # Gradio ile oluşturulan içerikler
+└── gradio_arayuz.py                # Gradio arayüz betiği (opsiyonel)
 
 ---
 
 ## 🎯 Proje Amacı
 
-- E-ticaret yorumlarının analizini yaparak duygu sınıflandırması gerçekleştirmek  
-- TF-IDF, Naive Bayes ve Logistic Regression gibi algoritmalarla kıyaslama  
-- Kullanıcı dostu ve görsel açıdan zengin bir Gradio arayüzü sunmak  
+- Türkçe e-ticaret yorumlarında duygu sınıflandırması yapmak  
+- TF-IDF, Naive Bayes ve Logistic Regression gibi algoritmalar ile karşılaştırma  
+- Kullanıcı dostu, sezgisel ve görsel yönü güçlü bir Gradio arayüzü oluşturmak
 
 ---
 
 ## ⚙️ Kullanılan Yöntemler
 
-- 🔡 **Veri Temizleme & Ön İşleme:** Noktalama, küçük harfe çevirme, stopword temizleme  
-- 📈 **Vektörleştirme:** Gelişmiş TF-IDF (min_df, max_df, n-gram optimizasyonlu)  
-- 🧠 **Makine Öğrenmesi Modelleri:**
+- 🔡 **Veri Ön İşleme:** Küçük harfe çevirme, noktalama işaretlerinin temizlenmesi, stopword filtreleme  
+- 📈 **Vektörleştirme:** TF-IDF (min_df, max_df, n-gram ayarlı)  
+- 🧠 **Modeller:**
   - `Multinomial Naive Bayes (alpha=0.5)`
   - `Logistic Regression (class_weight='balanced')`
-- 📊 **Değerlendirme Ölçütleri:**
+- 🧪 **Değerlendirme:**
   - Confusion Matrix
   - ROC Curve ve AUC Skoru
   - 5-fold Cross Validation
-- 📷 **Görselleştirmeler:**
+- 📊 **Görselleştirmeler:**
   - Kelime Bulutu
-  - Etkili Kelimeler Grafiği
-  - Model Karşılaştırma Bar Chart
+  - Öne çıkan kelimeler grafiği
+  - Model karşılaştırma bar grafiği
 
 ---
 
 ## 📊 Performans Göstergeleri
 
-| Ölçüt                  | Değer      |
-|------------------------|------------|
-| 🎯 Doğruluk (Test)     | **%95.2**  |
-| 📈 AUC Skoru           | **0.989**  |
+| Ölçüt                  | Değer     |
+|------------------------|-----------|
+| 🎯 Doğruluk (Test)     | **%95.2** |
+| 📈 AUC Skoru           | **0.989** |
 | 🔁 CV Ortalama Skoru   | **0.9498** |
 
 ---
@@ -79,7 +75,7 @@ Düzenle
 
 ---
 
-## 🧪 Model Karşılaştırması
+## ⚖️ Model Karşılaştırması
 
 | Model                | Eğitim Doğruluğu | Test Doğruluğu |
 |---------------------|------------------|----------------|
@@ -87,40 +83,43 @@ Düzenle
 | Multinomial NB      | %97.40           | %95.56         |
 | Linear SVC          | %99.48           | %95.52         |
 
-> 🔍 **MultinomialNB**, özellikle AUC skoru ve test doğruluğu bakımından öne çıkmıştır.
+> 🔍 **MultinomialNB**, özellikle AUC skoru ve test doğruluğu bakımından öne çıkmaktadır.
 
 ---
 
-## 🖥️ Gradio Arayüzü Özellikleri
+## 🖥️ Gradio Arayüz Özellikleri
 
-Proje sonunda Gradio ile sade, sezgisel ve çok sekmeli bir web arayüz tasarlandı:
+Gradio ile çok sekmeli, sade ve kullanıcı odaklı bir arayüz geliştirildi:
 
-- 🛍️ **Tahmin Sekmesi:** Kullanıcıdan gelen yoruma göre anında duygu tahmini
-- 📊 **Performans Sekmesi:** Eğitim & test doğruluğu, AUC skoru
-- 📈 **Model Karşılaştırması:** Grafiksel doğruluk karşılaştırması
-- 🔠 **En Etkili Kelimeler:** Tahmin kararlarını etkileyen en önemli kelimelerin görselleştirilmesi
+- 🛍️ **Tahmin Sekmesi:** Girilen yoruma göre anında duygu tahmini  
+- 📊 **Performans Sekmesi:** Eğitim / test skorları ve AUC değeri  
+- 📈 **Model Karşılaştırması:** Grafiksel doğruluk karşılaştırması  
+- 🔠 **En Etkili Kelimeler:** Kelimelerin model kararına etkilerinin görselleştirilmesi  
 
-### 🔧 Kurulum
+---
+
+## 🔧 Kurulum
 
 ```bash
 pip install gradio scikit-learn matplotlib pandas
 python gradio_arayuz.py
+
 🎓 Sunum Dosyası
-🎤 PowerPoint sunumu da projeye dahildir:
 
-Online Ürün Yorumlarından Duygu Sınıflandırması.pptx
+PowerPoint sunumu da projeye dahildir:
+📄 Online Ürün Yorumlarından Duygu Sınıflandırması.pptx
 
----
+⸻
 
-## 👤 Geliştirici
+👤 Geliştirici
 
-**Arif Yarencik**  
-Bilgisayar Mühendisliği Öğrencisi  
-Düzce Üniversitesi  
-🔗 [LinkedIn](https://www.linkedin.com/in/arifyarencik)
+Arif Yarencik
+Bilgisayar Mühendisliği Öğrencisi
+Düzce Üniversitesi
+🔗 LinkedIn Profilim
 
----
+⸻
 
-## 📃 Lisans
+📄 Lisans
 
-Bu proje eğitim amaçlıdır ve akademik kullanım için uygundur.
+Bu proje yalnızca eğitim ve akademik kullanım amaçlıdır.
