@@ -1,99 +1,114 @@
 # 🛍️ Online Ürün Yorumlarından Duygu Sınıflandırması
 
-Bu proje, e-ticaret sitelerindeki **ürün yorumlarının otomatik olarak olumlu veya olumsuz** olarak sınıflandırılmasını amaçlamaktadır. Türkçe dilinde işlenmiş yorumlar üzerinde **makine öğrenmesi** algoritmaları uygulanarak, kullanıcıya etkileşimli ve görsel açıdan zengin bir analiz ortamı sunulmuştur.
+Bu proje, Türkçe e-ticaret yorumlarını kullanarak **duygu analizi** (sentiment analysis) gerçekleştirmeyi amaçlar. Kullanıcı yorumları makine öğrenmesi modelleriyle işlenir ve **olumlu** veya **olumsuz** olarak sınıflandırılır.
+
+> 💡 Geliştirme, görselleştirme ve açıklanabilirlik odaklıdır. Gradio tabanlı kullanıcı dostu bir arayüz ile tamamlandı.
+
+---
+
+## 📁 Proje Klasör Yapısı
+
+📦 e-ticaret-duygu-analizi
+├── eticaret-urun-yorumlari.xlsx # Veri seti
+├── kod dosyası.ipynb # Tüm kodları içeren Jupyter Notebook
+├── README.md # Proje açıklama dosyası
+├── model_karsilastirma.png # Model karşılaştırma görseli
+├── etkili_kelimeler.png # Tahmine etki eden kelimeler grafiği
+├── output (1).png # ROC eğrisi görseli
+├── Online Ürün Yorumlarından ...pptx # Sunum dosyası
+├── .gradio/ # Gradio ile oluşturulan içerikler
+└── gradio_arayuz.py # Gradio arayüz betiği (opsiyonel)
+
+yaml
+Kopyala
+Düzenle
 
 ---
 
 ## 🎯 Proje Amacı
 
-- E-ticaret platformlarında yapılan yorumları analiz ederek müşteri memnuniyetini otomatik ölçmek  
-- Markaların ürün değerlendirme süreçlerine katkı sağlamak  
-- Görsel analizlerle veriyi daha anlaşılır ve karar destekleyici hâle getirmek  
+- E-ticaret yorumlarının analizini yaparak duygu sınıflandırması gerçekleştirmek  
+- TF-IDF, Naive Bayes ve Logistic Regression gibi algoritmalarla kıyaslama  
+- Kullanıcı dostu ve görsel açıdan zengin bir Gradio arayüzü sunmak  
 
 ---
 
-## 🧰 Kullanılan Teknolojiler
+## ⚙️ Kullanılan Yöntemler
 
-- **Python 3.11**
-- **Pandas, NumPy** (veri işleme)
-- **Scikit-learn** (makine öğrenmesi modelleri)
-- **TF-IDF Vectorizer (1-2 ngram)**
-- **MultinomialNB**, **Logistic Regression**, **LinearSVC**
-- **Matplotlib, Seaborn, WordCloud** (görselleştirme)
-- **NLTK** (Türkçe stopword temizleme)
-- **Gradio** (etkileşimli web arayüzü)
-
----
-
-## 🧠 Uygulanan Adımlar
-
-1. **Veri Temizleme**: Türkçe stopword temizliği ve özel karakter filtreleme
-2. **Vektörleştirme**: TF-IDF ile 1-2 n-gram dönüşümü
-3. **Model Eğitimi**: MultinomialNB ile temel modelleme
-4. **Model Karşılaştırma**: Logistic Regression ve LinearSVC ile doğruluk analizi
-5. **Görselleştirme**:
-   - Kelime Bulutu
-   - Etkili Kelimeler Grafiği
-   - Confusion Matrix
-   - ROC Eğrisi
-   - Model Karşılaştırma Grafiği
+- 🔡 **Veri Temizleme & Ön İşleme:** Noktalama, küçük harfe çevirme, stopword temizleme  
+- 📈 **Vektörleştirme:** Gelişmiş TF-IDF (min_df, max_df, n-gram optimizasyonlu)  
+- 🧠 **Makine Öğrenmesi Modelleri:**
+  - `Multinomial Naive Bayes (alpha=0.5)`
+  - `Logistic Regression (class_weight='balanced')`
+- 📊 **Değerlendirme Ölçütleri:**
+  - Confusion Matrix
+  - ROC Curve ve AUC Skoru
+  - 5-fold Cross Validation
+- 📷 **Görselleştirmeler:**
+  - Kelime Bulutu
+  - Etkili Kelimeler Grafiği
+  - Model Karşılaştırma Bar Chart
 
 ---
 
-## 💻 Gradio Arayüz Özellikleri
+## 📊 Performans Göstergeleri
 
-Arayüz sekmeli yapıdadır:
-
-- 📊 **Performans**: Modelin eğitim ve test doğrulukları ile AUC skorunu gösterir  
-- 📉 **Model Karşılaştırması**: Farklı modellerin doğruluk oranlarını grafikle karşılaştırır  
-- 🧠 **En Etkili Kelimeler**: MultinomialNB modeline göre sınıflandırmaya en çok etki eden kelimeleri listeler ve görselleştirir  
-
----
-
-## 📌 Proje Yapısı
-
-```
-📦 proje_dosyaları/
-├── eticaret-urun-yorumlari.csv
-├── main.ipynb
-├── model_karsilastirma.png
-├── etkili_kelimeler.png
-├── README.md
-```
+| Ölçüt                  | Değer      |
+|------------------------|------------|
+| 🎯 Doğruluk (Test)     | **%95.2**  |
+| 📈 AUC Skoru           | **0.989**  |
+| 🔁 CV Ortalama Skoru   | **0.9498** |
 
 ---
 
-## 🧪 Örnek Çıktılar
+## 🧠 Confusion Matrix – MultinomialNB
 
-- ✅ Eğitim Doğruluğu: %97.4  
-- ✅ Test Doğruluğu: %95.5  
-- 📈 AUC Skoru: 0.97  
-- 🔠 En etkili kelimeler: `bayıldım`, `rezalet`, `mükemmel`, `bozuk` gibi ifadeler
+![Confusion Matrix](model_karsilastirma.png)
 
 ---
 
-## 🧩 Gereksinimler
+## 🚀 ROC Eğrisi
 
-Aşağıdaki komut ile gerekli paketleri yükleyebilirsiniz:
+![ROC Curve](output%20(1).png)
+
+---
+
+## 🧾 Tahmine En Çok Etki Eden Kelimeler
+
+![Etkili Kelimeler](etkili_kelimeler.png)
+
+---
+
+## 🧪 Model Karşılaştırması
+
+| Model                | Eğitim Doğruluğu | Test Doğruluğu |
+|---------------------|------------------|----------------|
+| Logistic Regression | %97.44           | %94.97         |
+| Multinomial NB      | %97.40           | %95.56         |
+| Linear SVC          | %99.48           | %95.52         |
+
+> 🔍 **MultinomialNB**, özellikle AUC skoru ve test doğruluğu bakımından öne çıkmıştır.
+
+---
+
+## 🖥️ Gradio Arayüzü Özellikleri
+
+Proje sonunda Gradio ile sade, sezgisel ve çok sekmeli bir web arayüz tasarlandı:
+
+- 🛍️ **Tahmin Sekmesi:** Kullanıcıdan gelen yoruma göre anında duygu tahmini
+- 📊 **Performans Sekmesi:** Eğitim & test doğruluğu, AUC skoru
+- 📈 **Model Karşılaştırması:** Grafiksel doğruluk karşılaştırması
+- 🔠 **En Etkili Kelimeler:** Tahmin kararlarını etkileyen en önemli kelimelerin görselleştirilmesi
+
+### 🔧 Kurulum
 
 ```bash
-pip install -r requirements.txt
-```
+pip install gradio scikit-learn matplotlib pandas
+python gradio_arayuz.py
+🎓 Sunum Dosyası
+🎤 PowerPoint sunumu da projeye dahildir:
 
-Veya:
-
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn nltk gradio wordcloud
-```
-
----
-
-## 🧭 Geliştirme Fikirleri
-
-- SHAP veya LIME ile açıklanabilirlik (modelin neden bu sonucu verdiğini açıklayan grafikler)
-- Gerçek zamanlı yorum toplama (web scraping ile)
-- Ürün kategorisine göre duygu karşılaştırması
-- Kullanıcı yorumu girdisiyle kelime etkisi analizi
+Online Ürün Yorumlarından Duygu Sınıflandırması.pptx
 
 ---
 
